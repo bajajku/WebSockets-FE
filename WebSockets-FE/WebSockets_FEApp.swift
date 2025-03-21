@@ -11,7 +11,9 @@ import SwiftUI
 struct WebSockets_FEApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ChatView()
+            }
         }
     }
 }
