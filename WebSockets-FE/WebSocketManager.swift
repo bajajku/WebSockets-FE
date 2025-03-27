@@ -38,6 +38,7 @@ class WebSocketManager: ObservableObject {
         isConnected = false
         pingTimer?.invalidate()
         pingTimer = nil
+        self.messages = []
     }
     
     func send(message: String) {
@@ -84,6 +85,11 @@ class WebSocketManager: ObservableObject {
                         if sender != "iOSUser" {
                             DispatchQueue.main.async {
                                 self?.messages.append(WebSocketMessage(text: content, isFromUser: false))
+                            }
+                        }
+                        else if sender == "iOSUser" {
+                            DispatchQueue.main.async {
+                                self?.messages.append(WebSocketMessage(text: content, isFromUser: true))
                             }
                         }
                     } else {
